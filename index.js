@@ -7,7 +7,7 @@ let FAClient = null;
 
 const SERVICE = {
     name: 'FreeAgentService',
-    appletId: `aHR0cDovLzEyNy4wLjAuMTo1NTAw`,
+    appletId: `aHR0cHM6Ly9hbGJlcnRlc3RldmFuLmdpdGh1Yi5pby8=`,
     googleKey: 'AIzaSyATIFag-8_neL5KSwtuoRVwFb8wmaK2UBA'
 };
   
