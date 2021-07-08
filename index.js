@@ -122,7 +122,7 @@ function searchMap(event) {
     infoWindow.close();
 
     markers.forEach((marker, i) => {
-        if (marker.getTitle().includes(inputName)) {
+        if (marker.getTitle().toLowerCase().includes(inputName.toLowerCase())) {
             if (!isFound) {
                 infoWindow.close();
                 infoWindow.setContent(marker.getTitle());
@@ -151,18 +151,25 @@ function searchMap(event) {
 function prev() {
     if (currentSearchIndex - 1 >= 0) {
 
-        searchResultsMarkers.forEach((marker, i) => {
-            if (i == currentSearchIndex - 1) {
-                infoWindow.close();
-                infoWindow.setContent(marker.getTitle());
-                infoWindow.open(marker.getMap(), marker);
-    
-                map.setCenter(marker.position);
-                map.setZoom(12);
+        let marker = searchResultsMarkers[currentSearchIndex - 1];
+        infoWindow.close();
+        infoWindow.setContent(marker.getTitle());
+        infoWindow.open(marker.getMap(), marker);
+        currentSearchIndex -= 1;
 
-                currentSearchIndex = i;
-            }
-        });
+
+        // searchResultsMarkers.forEach((marker, i) => {
+        //     if (i == currentSearchIndex - 1) {
+        //         infoWindow.close();
+        //         infoWindow.setContent(marker.getTitle());
+        //         infoWindow.open(marker.getMap(), marker);
+    
+        //         map.setCenter(marker.position);
+        //         map.setZoom(12);
+
+        //         currentSearchIndex = i;
+        //     }
+        // });
         document.getElementById("resultsCount").innerHTML = `${currentSearchIndex + 1} of ${searchResultsMarkers.length} Results`;
         console.log("currentSearchIndex", currentSearchIndex)
     }
