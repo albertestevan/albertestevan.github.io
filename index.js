@@ -65,7 +65,6 @@ async function getCustomersLatLng(allCust) {
 
 // Initialize and app and add markers for all customers
 async function initMap() {
-    console.log("initMap")
     map = new google.maps.Map(document.getElementById("map"), {
       zoom: 5,
       minZoom: 2,
@@ -107,7 +106,7 @@ function searchMap(event) {
     event.preventDefault();
     const inputName = document.getElementById("name").value;
 
-    if (inputName == nul || inputName.trim().length == 0) {
+    if (inputName == null || inputName.match(/^ *$/) !== null) {
         return;
     }
 
