@@ -164,6 +164,7 @@ function prev() {
             }
         });
         document.getElementById("resultsCount").innerHTML = `${currentSearchIndex + 1} of ${searchResultsMarkers.length} Results`;
+        console.log("currentSearchIndex", currentSearchIndex)
     }
 }
 
@@ -183,5 +184,7 @@ function next() {
             }
         });
         document.getElementById("resultsCount").innerHTML = `${currentSearchIndex + 1} of ${searchResultsMarkers.length} Results`;
+        console.log("currentSearchIndex", currentSearchIndex)
+
     }
 }
