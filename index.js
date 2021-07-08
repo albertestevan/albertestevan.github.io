@@ -107,6 +107,10 @@ function searchMap(event) {
     event.preventDefault();
     const inputName = document.getElementById("name").value;
 
+    if (!inputName) {
+        return;
+    }
+
     let isFound = false;
     searchResultsMarkers = [];
 
@@ -124,10 +128,8 @@ function searchMap(event) {
                 map.setZoom(12);
                 isFound = true;
             }
-
             searchResultsMarkers.push(marker);
         }
-        
     });
 
     currentSearchIndex = 0;
@@ -140,14 +142,12 @@ function searchMap(event) {
 }
 
 function prev() {
-    console.log("PREV");
-    console.log("currentSearchIndex", currentSearchIndex);
 
     if (currentSearchIndex - 1 >= 0) {
 
         searchResultsMarkers.forEach((marker, i) => {
             if (i == currentSearchIndex - 1) {
-                infoWindow.close();
+                infoWindow.closes();
                 infoWindow.setContent(marker.getTitle());
                 infoWindow.open(marker.getMap(), marker);
     
@@ -164,8 +164,6 @@ function prev() {
 }
 
 function next() {
-    console.log("NEXT");
-    console.log("currentSearchIndex", currentSearchIndex);
 
     if (currentSearchIndex + 1 < searchResultsMarkers.length) {
 
