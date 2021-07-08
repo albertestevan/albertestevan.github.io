@@ -6,7 +6,6 @@ body, html {
 }
   
 * {
-    /* height: 100%; */
     width: 100%;
     max-width: 300px;
 
@@ -16,15 +15,6 @@ body, html {
 
 main {
     position: relative
-}
-
-button {
-  background-color: #6F7378;
-  border: none;
-  color: white;
-  padding: 5px 0;
-  font-size: 11px;
-  cursor: pointer;
 }
 
 button:hover {
@@ -46,8 +36,7 @@ button:hover {
     display: flex;
 }
 
-.searchTerm {
-    /* width: 100%; */
+.search form input {
     border: 2px solid #AAA;
     border-right: none;
     padding: 5px;
@@ -55,7 +44,11 @@ button:hover {
     outline: none;
 }
 
-.searchButton {
+/* .searchTerm {
+
+} */
+
+.search button {
     width: 40px;
     height: 29px;
     border: 2px solid #90bc84;
@@ -66,14 +59,14 @@ button:hover {
     font-size: 11px;
 }
 
-.notFoundError {
+#error {
     display: none;
     background: #e72700;
     color: #fff;
     text-align: center;
 }
 
-.resultsCount {
+#resultsCount {
     text-align: center;
     background: #ececf4;
 }
@@ -81,4 +74,13 @@ button:hover {
 .info {
     position: absolute;
     z-index: 1;
+}
+
+#prevNextButtons button {
+    background-color: #6F7378;
+    border: none;
+    color: white;
+    padding: 5px 0;
+    font-size: 11px;
+    cursor: pointer;
 }

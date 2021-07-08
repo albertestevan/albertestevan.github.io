@@ -70,8 +70,8 @@ function getCustomerLatLng(customer) {
 // Get all customer's latitude and longitude coordinates from location string
 async function getCustomersLatLng(allCust) {
   promises = [];
-  allCust.forEach((c) => {
-    promises.push(getCustomerLatLng(c));
+  allCust.forEach((customer) => {
+    promises.push(getCustomerLatLng(customer));
   });
   return await Promise.all(promises);
 }
@@ -89,7 +89,7 @@ async function initMap() {
   let allCustomers = await getAllCustomers();
   allCustomers = await getCustomersLatLng(allCustomers);
 
-  // Create an info window to share between markers.
+  // Create an info window
   infoWindow = new google.maps.InfoWindow();
 
   allCustomers.forEach(({ id, name, location, position }, i) => {
@@ -119,19 +119,18 @@ function searchMap(event) {
   const inputName = document.getElementById("name").value;
 
   //check if input is empty or only contains whitespace
-  if (
-    inputName == null ||
-    inputName.replace(/^\s+/, "").replace(/\s+$/, "") === ""
-  ) {
+  if (inputName == null || inputName.replace(/^\s+/, "").replace(/\s+$/, "") === "") {
     return;
   }
   let isFound = false;
   searchResultsMarkers = [];
   infoWindow.close();
 
+  const lowerInputName = inputName.toLowerCase();
+  
   //iterate the markers to search
   markers.forEach((marker, i) => {
-    if (marker.getTitle().toLowerCase().includes(inputName.toLowerCase())) {
+    if (marker.getTitle().toLowerCase().includes(lowerInputName)) {
       if (!isFound) {
         infoWindow.close();
         infoWindow.setContent(marker.getTitle());

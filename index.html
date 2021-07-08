@@ -10,16 +10,16 @@
 <body>
   <div class="search">
     <form id="form">
-        <input type="text" id="name" name="name" class="searchTerm" placeholder="Search by Name">
+        <input type="text" id="name" name="name" placeholder="Search by Name">
     </form>
-    <button type="submit" form="form" class="searchButton">Search</button>
+    <button type="submit" form="form" >Search</button>
  </div>
 
 <div class="main">
 	<div class="info">
-		<div id="error" class="notFoundError"><p>Not Found</p></div>
-		<div id="resultsCount" class="resultsCount"></div>
-		<div id="prevNextButtons" class="prevNextButtons" style="display: none">
+		<div id="error"><p>Not Found</p></div>
+		<div id="resultsCount"></div>
+		<div id="prevNextButtons" style="display: none">
 			<button onclick={prev()}><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
 			<button onclick={next()}><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
 		</div>
