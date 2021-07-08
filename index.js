@@ -10,7 +10,8 @@ const SERVICE = {
     appletId: `aHR0cHM6Ly9hbGJlcnRlc3RldmFuLmdpdGh1Yi5pby8=`,
     googleKey: 'AIzaSyATIFag-8_neL5KSwtuoRVwFb8wmaK2UBA'
 };
-  
+
+// Initialize FAAppletClient
 async function startupService() {
 
     FAClient = new FAAppletClient({
@@ -19,6 +20,7 @@ async function startupService() {
 
 }
 
+// Get all customers from the customers app
 function getAllCustomers() {
     return new Promise((resolve, reject) => {
         let customerInfo = {
@@ -40,7 +42,7 @@ function getAllCustomers() {
     })
 }
 
-
+// Get a customer's latitude and longitude coordinates from location string using Google Geocoding API
 function getCustomerLatLng(customer) {
     return new Promise((resolve, reject) => {
         fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${customer.location.replace(/\s/g, '+')}&key=${SERVICE.googleKey}`)
@@ -52,6 +54,7 @@ function getCustomerLatLng(customer) {
     })
 }
 
+// Get all customer's latitude and longitude coordinates from location string
 async function getCustomersLatLng(allCust) {
         promises = []
         allCust.forEach(c => {
@@ -59,7 +62,6 @@ async function getCustomersLatLng(allCust) {
         })
         return await Promise.all(promises)
 }
-
 
 // Initialize and app and add markers for all customers
 async function initMap() {
@@ -104,8 +106,7 @@ function searchMap(event) {
     event.preventDefault();
     const inputName = document.getElementById("name").value;
 
-    console.log("inputName", inputName)
-
+    //check if input is empty or only contains whitespace
     if (inputName == null || inputName.replace(/^\s+/, '').replace(/\s+$/, '') === '') {
         return;
     }
@@ -139,7 +140,6 @@ function searchMap(event) {
 }
 
 function prev() {
-
     if (currentSearchIndex - 1 >= 0) {
 
         searchResultsMarkers.forEach((marker, i) => {
@@ -154,13 +154,11 @@ function prev() {
                 currentSearchIndex = i;
             }
         });
-
-        document.getElementById("resultsCount").innerHTML = `${currentSearchIndex + 1} of ${searchResultsMarkers.length} Results`;
+        document.getElementById("resultsCount").innerHTML = `${currentSearchIndex - 1} of ${searchResultsMarkers.length} Results`;
     }
 }
 
 function next() {
-
     if (currentSearchIndex + 1 < searchResultsMarkers.length) {
 
         searchResultsMarkers.forEach((marker, i) => {
