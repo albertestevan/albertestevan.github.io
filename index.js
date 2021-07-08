@@ -107,7 +107,7 @@ function searchMap(event) {
     event.preventDefault();
     const inputName = document.getElementById("name").value;
 
-    if (inputName == null) {
+    if (inputName == nul || inputName.trim().length == 0) {
         return;
     }
 
