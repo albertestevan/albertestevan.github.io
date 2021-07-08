@@ -25,9 +25,7 @@ function getAllCustomers() {
             entity: 'customer',
         };
     
-        FAClient.listEntityValues(customerInfo,(customers) => {
-            console.log(customers);
-    
+        FAClient.listEntityValues(customerInfo,(customers) => {    
             let allCust = []
             customers.forEach((customer) => {
                 const cust = {
@@ -108,7 +106,7 @@ function searchMap(event) {
 
     console.log("inputName", inputName)
 
-    if (inputName == null || inputName.trim() === '') {
+    if (inputName == null || inputName.replace(/^\s+/, '').replace(/\s+$/, '') === '') {
         return;
     }
 
@@ -138,8 +136,6 @@ function searchMap(event) {
     !isFound ? (document.getElementById('error').style.display = "block",  document.getElementById("resultsCount").innerHTML = ``) : 
     (document.getElementById('error').style.display = "none", document.getElementById("resultsCount").innerHTML = `1 of ${searchResultsMarkers.length} Results`);
     (searchResultsMarkers.length > 1) ? document.getElementById("prevNextButtons").style.display = "flex" : document.getElementById("prevNextButtons").style.display = "none";
-
-    console.log("searchResultsMarkers", searchResultsMarkers.length);
 }
 
 function prev() {
@@ -160,7 +156,6 @@ function prev() {
         });
 
         document.getElementById("resultsCount").innerHTML = `${currentSearchIndex + 1} of ${searchResultsMarkers.length} Results`;
-        console.log("update", currentSearchIndex);
     }
 }
 
@@ -181,6 +176,5 @@ function next() {
             }
         });
         document.getElementById("resultsCount").innerHTML = `${currentSearchIndex + 1} of ${searchResultsMarkers.length} Results`;
-        console.log("update", currentSearchIndex);
     }
 }
