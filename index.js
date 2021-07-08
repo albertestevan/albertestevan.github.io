@@ -154,7 +154,10 @@ function prev() {
                 currentSearchIndex = i;
             }
         });
-        document.getElementById("resultsCount").innerHTML = `${currentSearchIndex - 1} of ${searchResultsMarkers.length} Results`;
+        document.getElementById("resultsCount").innerHTML = `${currentSearchIndex + 1} of ${searchResultsMarkers.length} Results`;
+
+        console.log("currentSearchIndex", currentSearchIndex)
+
     }
 }
 
@@ -174,5 +177,8 @@ function next() {
             }
         });
         document.getElementById("resultsCount").innerHTML = `${currentSearchIndex + 1} of ${searchResultsMarkers.length} Results`;
+
+        console.log("currentSearchIndex", currentSearchIndex)
+
     }
 }
