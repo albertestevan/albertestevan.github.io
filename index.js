@@ -150,70 +150,22 @@ function searchMap(event) {
 
 function prev() {
     if (currentSearchIndex - 1 >= 0) {
-
         let marker = searchResultsMarkers[currentSearchIndex - 1];
         infoWindow.close();
         infoWindow.setContent(marker.getTitle());
         infoWindow.open(marker.getMap(), marker);
         currentSearchIndex -= 1;
-
-
-        // searchResultsMarkers.forEach((marker, i) => {
-        //     if (i == currentSearchIndex - 1) {
-        //         infoWindow.close();
-        //         infoWindow.setContent(marker.getTitle());
-        //         infoWindow.open(marker.getMap(), marker);
-    
-        //         map.setCenter(marker.position);
-        //         map.setZoom(12);
-
-        //         currentSearchIndex = i;
-        //     }
-        // });
         document.getElementById("resultsCount").innerHTML = `${currentSearchIndex + 1} of ${searchResultsMarkers.length} Results`;
-        console.log("currentSearchIndex", currentSearchIndex)
     }
 }
 
 function next() {
     if (currentSearchIndex + 1 < searchResultsMarkers.length) {
-
-        // searchResultsMarkers.forEach((marker, i) => {
-        //     if (i == currentSearchIndex + 1) {
-        //         infoWindow.close();
-        //         infoWindow.setContent(marker.getTitle());
-        //         infoWindow.open(marker.getMap(), marker);
-    
-        //         map.setCenter(marker.position);
-        //         map.setZoom(12);
-
-        //         currentSearchIndex = i;
-        //     }
-        // });
-        // document.getElementById("resultsCount").innerHTML = `${currentSearchIndex + 1} of ${searchResultsMarkers.length} Results`;
-        // console.log("currentSearchIndex", currentSearchIndex)
-
         let marker = searchResultsMarkers[currentSearchIndex + 1];
         infoWindow.close();
         infoWindow.setContent(marker.getTitle());
         infoWindow.open(marker.getMap(), marker);
         currentSearchIndex += 1;
-
-
-        // searchResultsMarkers.forEach((marker, i) => {
-        //     if (i == currentSearchIndex - 1) {
-        //         infoWindow.close();
-        //         infoWindow.setContent(marker.getTitle());
-        //         infoWindow.open(marker.getMap(), marker);
-    
-        //         map.setCenter(marker.position);
-        //         map.setZoom(12);
-
-        //         currentSearchIndex = i;
-        //     }
-        // });
         document.getElementById("resultsCount").innerHTML = `${currentSearchIndex + 1} of ${searchResultsMarkers.length} Results`;
-        console.log("currentSearchIndex", currentSearchIndex)
-
     }
 }
