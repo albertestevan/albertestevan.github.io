@@ -110,11 +110,8 @@ function searchMap(event) {
     if (inputName == null || inputName.replace(/^\s+/, '').replace(/\s+$/, '') === '') {
         return;
     }
-
     let isFound = false;
     searchResultsMarkers = [];
-
-    //
     infoWindow.close();
 
     markers.forEach((marker, i) => {
@@ -144,7 +141,7 @@ function prev() {
 
         searchResultsMarkers.forEach((marker, i) => {
             if (i == currentSearchIndex - 1) {
-                infoWindow.closes();
+                infoWindow.close();
                 infoWindow.setContent(marker.getTitle());
                 infoWindow.open(marker.getMap(), marker);
     
@@ -155,9 +152,6 @@ function prev() {
             }
         });
         document.getElementById("resultsCount").innerHTML = `${currentSearchIndex + 1} of ${searchResultsMarkers.length} Results`;
-
-        console.log("currentSearchIndex", currentSearchIndex)
-
     }
 }
 
@@ -177,8 +171,5 @@ function next() {
             }
         });
         document.getElementById("resultsCount").innerHTML = `${currentSearchIndex + 1} of ${searchResultsMarkers.length} Results`;
-
-        console.log("currentSearchIndex", currentSearchIndex)
-
     }
 }
