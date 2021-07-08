@@ -65,8 +65,7 @@ async function getCustomersLatLng(allCust) {
 
 // Initialize and app and add markers for all customers
 async function initMap() {
-
-    let allCustomers = await getAllCustomers();
+    console.log("initMap")
     map = new google.maps.Map(document.getElementById("map"), {
       zoom: 5,
       minZoom: 2,
@@ -75,9 +74,8 @@ async function initMap() {
       streetViewControl: false,
     });
 
+    let allCustomers = await getAllCustomers();
     allCustomers = await getCustomersLatLng(allCustomers)
-
-    console.log("allCustomers", allCustomers);
 
     // Create an info window to share between markers.
     infoWindow = new google.maps.InfoWindow();
