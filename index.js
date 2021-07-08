@@ -1,9 +1,9 @@
-let map;
+let FAClient = null;
+let map = null;
 let infoWindow = null;
 let markers = [];
 let searchResultsMarkers = [];
 let currentSearchIndex = null;
-let FAClient = null;
 
 const SERVICE = {
     name: 'FreeAgentService',
@@ -11,9 +11,16 @@ const SERVICE = {
     googleKey: 'AIzaSyATIFag-8_neL5KSwtuoRVwFb8wmaK2UBA'
 };
 
+const MAP_DEFAULT = {
+    zoom: 5,
+    minZoom: 2,
+    center: { lat: 36.778259, lng: -119.417931 },
+    mapTypeControl: false,
+    streetViewControl: false,
+};
+
 // Initialize FAAppletClient
 async function startupService() {
-
     FAClient = new FAAppletClient({
         appletId: SERVICE.appletId,
     });
@@ -30,12 +37,12 @@ function getAllCustomers() {
         FAClient.listEntityValues(customerInfo,(customers) => {    
             let allCust = []
             customers.forEach((customer) => {
-                const cust = {
+                
+                allCust.push({
                     id: customer.id, 
                     name: customer.field_values.customer_field0.value, 
                     location: customer.field_values.customer_field1.value
-                };
-                allCust.push(cust)
+                })
             });
             resolve(allCust)
         });
@@ -66,11 +73,11 @@ async function getCustomersLatLng(allCust) {
 // Initialize and app and add markers for all customers
 async function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 5,
-      minZoom: 2,
-      center: { lat: 36.778259, lng: -119.417931 },
-      mapTypeControl: false,
-      streetViewControl: false,
+      zoom: MAP_DEFAULT.zoom,
+      minZoom: MAP_DEFAULT.minZoom,
+      center: MAP_DEFAULT.center,
+      mapTypeControl: MAP_DEFAULT.mapTypeControl,
+      streetViewControl: MAP_DEFAULT.streetViewControl
     });
 
     let allCustomers = await getAllCustomers();
@@ -128,12 +135,17 @@ function searchMap(event) {
             searchResultsMarkers.push(marker);
         }
     });
-
     currentSearchIndex = 0;
 
-    !isFound ? (document.getElementById('error').style.display = "block",  document.getElementById("resultsCount").innerHTML = ``) : 
-    (document.getElementById('error').style.display = "none", document.getElementById("resultsCount").innerHTML = `1 of ${searchResultsMarkers.length} Results`);
-    (searchResultsMarkers.length > 1) ? document.getElementById("prevNextButtons").style.display = "flex" : document.getElementById("prevNextButtons").style.display = "none";
+    if (!isFound) {
+        document.getElementById('error').style.display = "block";
+        document.getElementById("resultsCount").innerHTML = ``
+    }
+    else {
+        document.getElementById('error').style.display = "none";
+        document.getElementById("resultsCount").innerHTML = `1 of ${searchResultsMarkers.length} Results`
+    }
+    searchResultsMarkers.length > 1 ? document.getElementById("prevNextButtons").style.display = "flex" : document.getElementById("prevNextButtons").style.display = "none";
 }
 
 function prev() {
