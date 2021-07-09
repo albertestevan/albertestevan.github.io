@@ -24,7 +24,6 @@ button:hover {
 }
   
 #map {
-    /* height: 100%; */
     width: 300px;
     height: 570px;
 
@@ -43,10 +42,6 @@ button:hover {
     height: 15px;
     outline: none;
 }
-
-/* .searchTerm {
-
-} */
 
 .search button {
     width: 40px;
